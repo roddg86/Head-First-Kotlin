@@ -1,8 +1,8 @@
 fun main() {
-    var x = 10 // val неизменяемая переменная
+    var x = 10
 
     while (x > 1) {
         x = x - 1
-        if (x < 3) println("small x")
+        print(if (x < 3) "small x" else "big x")
     }
 }
