@@ -1,9 +1,10 @@
 fun main (){
-    val hobbits = arrayOf("Frodo", "Sam", "Merry", "Pippin")
-    var x = 0;
+    val firemen = arrayOf("Pugh", "Pugh", "Barney McGrew", "Cuthbert", "Dibble", "Grub")
+    var firemanNo = 0
 
-    while (x < 4){
-        println("${hobbits[x]} хорошее хобитское имя")
-        x = x + 1
+    /* нужны скобки */
+    while (firemanNo < 6){
+        println("Fireman номер $firemanNo равен ${firemen[firemanNo]}")
+        firemanNo = firemanNo + 1
     }
 }
