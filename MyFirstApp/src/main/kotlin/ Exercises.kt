@@ -1,10 +1,17 @@
-fun main (){
-    val firemen = arrayOf("Pugh", "Pugh", "Barney McGrew", "Cuthbert", "Dibble", "Grub")
-    var firemanNo = 0
+fun main() {
+    /* Fruit = Banana
+    *  Fruit = Blueberry
+    *  Fruit = Pomegranate
+    *  Fruit = Cherry */
 
-    /* нужны скобки */
-    while (firemanNo < 6){
-        println("Fireman номер $firemanNo равен ${firemen[firemanNo]}")
-        firemanNo = firemanNo + 1
+    val fruit = arrayOf("Apple", "Banana", "Cherry", "Blueberry", "Pomegranate")
+
+    var x = 0
+    while (x < 4) {
+        val index = arrayOf(1, 3, 4, 2)
+        var y: Int
+        y = index[x]
+        println("Fruit = ${fruit[y]}")
+        x = x + 1
     }
 }
