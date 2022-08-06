@@ -1,13 +1,9 @@
 fun main() {
-    doSomefing("Привет", 7)
+    println(timesThree(4))
 }
 
-fun doSomefing(msg: String, i: Int) {
-    if (i > 0) {
-        var x = 0
-        while (x < i) {
-            println(msg)
-            x = x + 1
-        }
-    }
+fun timesThree(x: Int): Int {
+    var y = 0
+    y = x * 3
+    return y
 }
