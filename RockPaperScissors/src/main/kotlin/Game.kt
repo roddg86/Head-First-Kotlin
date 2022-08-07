@@ -7,9 +7,14 @@ fun main() {
 
     val userChoice = getUserChoice(options)
 
+    val printRes = printResult(gameChoice, userChoice)
+
 }
 
-/* краткий вид через равно, фунция с единственным выражением */
+/* краткий вид через равно, фунция с единственным выражением
+*
+* получить выбор от компьютера
+* */
 fun getGameChoice(optionParam: Array<String>) = optionParam[(Math.random() * optionParam.size).toInt()]
 
 /* получению варианта, выбранного пользователем.
@@ -49,4 +54,16 @@ fun getUserChoice(optionParam: Array<String>): String{
         if (!isValidChoice) println("Вы должны ввести правильный выбор")
     }
     return userChoice
+}
+
+fun printResult(userChoice: String, gameChoie: String){
+    val result: String
+    /* Определить результат */
+    if (userChoice == gameChoie) result = "Ничья!"
+    else if ((userChoice == "Камень" && gameChoie == "Ножницы") ||
+            (userChoice == "Бумага" && gameChoie == "Камень") ||
+            (userChoice == "Ножницы" && gameChoie == "Бумага")) result = "Комьютер победил!"
+    else result = "Компьютер проиграл!"
+    /* Вывести результат */
+    println("Компьютер выбрали $userChoice Я выбрал $gameChoie $result")
 }
