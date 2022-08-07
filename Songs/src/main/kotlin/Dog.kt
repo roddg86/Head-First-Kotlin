@@ -3,7 +3,7 @@
 То, что объект может
 сделать, — его функции. */
 
-class Dog(val name: String, var weight: Int, breed_param: String) {
+class Dog(val name: String, weight_param: Int, breed_param: String) {
 
     /* добавим еще одно свойство в теле класса а не через конструктор */
     var activities = arrayOf("Прогулки")
@@ -13,11 +13,24 @@ class Dog(val name: String, var weight: Int, breed_param: String) {
     свойству breed. */
     val breed = breed_param.toUpperCase()
 
+    /*пользовательские get- и set-методы позволяют защитить эти свойства от
+    некорректного использования.*/
+
     /* пользовательский get метод */
     val weightInKgs: Double
         /* Get-метод получает значение параметра weight
         и делит его на 2,2, чтобы вычислить значение в килограммах. */
         get() = weight / 2.2
+
+    /* пользовательский set метод */
+    /*Этот код добавляет пользовательский set-метод для
+    свойства weight. Благодаря наличию set-метода свой-
+    ство weight будет обновляться только значениями,
+    которые больше нуля.*/
+    var weight = weight_param
+        set(value) {
+            if (value > 0) field = value // ключевое слово field предотвращает зацикливане
+        }
 
 
     /* функция класса */
