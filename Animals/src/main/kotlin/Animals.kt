@@ -4,7 +4,7 @@
 объявлять его открытым
 не обязательно.
  */
-abstract class Animal {
+abstract class Animal: Roamable {
     abstract val image: String
     abstract val food: String
     abstract val habitat: String
@@ -14,7 +14,8 @@ abstract class Animal {
 
     abstract fun eat()
 
-    open fun roam() {
+    /* переопределение функции roam() из интерфейса Roamable */
+    override fun roam() {
         println("Животоное бродит")
     }
 
