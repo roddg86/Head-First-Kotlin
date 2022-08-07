@@ -1,28 +1,24 @@
 /*
-Чтобы класс мог использоваться в качестве супер-класса,
-он должен быть объявлен открытым (open). Все аспекты класса, которые вы хотите
-переопределить, тоже должны быть открытыми.
-*/
-
-open class Animal {
-    open val image = ""
-    open val food = ""
-    open val habitat = ""
+Если суперкласс поме-
+чен как абстрактный,
+объявлять его открытым
+не обязательно.
+ */
+abstract class Animal {
+    abstract val image: String
+    abstract val food: String
+    abstract val habitat: String
     var hunger = 10
 
-    open fun makeNoise(){
-        println("Животное шумит")
-    }
+    abstract fun makeNoise()
 
-    open fun eat(){
-        println("Животное ест")
-    }
+    abstract fun eat()
 
-    open fun roam(){
+    open fun roam() {
         println("Животоное бродит")
     }
 
-    fun sleep(){
+    fun sleep() {
         println("Животное спит")
     }
 }
