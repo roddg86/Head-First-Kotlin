@@ -7,7 +7,7 @@ fun main() {
 
     val userChoice = getUserChoice(options)
 
-    val printRes = printResult(gameChoice, userChoice)
+    printResult(gameChoice, userChoice)
 
 }
 
