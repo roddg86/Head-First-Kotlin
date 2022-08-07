@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    val d = DVDPlayer(true)
-    d.playDVD()
-    d.recordDVD()
+    val myDog = Dog("Шарик", 75, "Овчарка")
+
+    println(myDog.weightInKgs)
 }

@@ -5,19 +5,6 @@
 
 class Dog(val name: String, var weight: Int, breed_param: String) {
 
-    /* Блоки инициализации выполняются при инициализации объекта сразу же после вызова конструктора
-   и снабжаются префиксом init. */
-    /* Это блок
-    инициализации.
-    Он содержит код, который должен выполняться при
-    инициализации объекта Dog. */
-    init {
-        println("Собака $name создана")
-    }
-
-    /* отложенная инициализация */
-    lateinit var temperament: String
-
     /* добавим еще одно свойство в теле класса а не через конструктор */
     var activities = arrayOf("Прогулки")
 
@@ -26,11 +13,11 @@ class Dog(val name: String, var weight: Int, breed_param: String) {
     свойству breed. */
     val breed = breed_param.toUpperCase()
 
-    /* Второй блок инициализции выполняется поле создания свойств */
-    init {
-        println("Порода $breed")
-    }
-
+    /* пользовательский get метод */
+    val weightInKgs: Double
+        /* Get-метод получает значение параметра weight
+        и делит его на 2,2, чтобы вычислить значение в килограммах. */
+        get() = weight / 2.2
 
 
     /* функция класса */
