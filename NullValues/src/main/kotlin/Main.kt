@@ -1,27 +1,37 @@
 fun main(args: Array<String>) {
-    var w: Wolf? = Wolf()
+    val test: String = "Yes"
 
-    if (w != null) {
-        w.eat()
+    try {
+        println("Start try")
+        riskyCode(test)
+        println("End try")
+    } catch (e: BadException) {
+        println("Bad Exception")
+    } finally {
+        println("Finally")
     }
-
-    var x = w?.hunger
-    println("The value if x is $x")
-
-    var y = w?.hunger ?: -1
-    println("The value of y is $y")
-
-    var myWolf = MyWolf()
-    myWolf?.wolf?.hunger = 8
-    println("The value of myWolf?.wolf?.hunger is ${myWolf?.wolf?.hunger}")
-
-    var myArray = arrayOf("Hi", "Hello", null)
-    for (item in myArray) {
-        item?.let { println(it) }
-    }
-
-    getAlphaWolf()?.let { it.eat() }
-
-    //w = null
-    var z = w!!.hunger
+    println("End of main")
 }
+
+/*
+        NO                      YES
+
+    Start try               Start try
+    Start risky code        Start risky code
+    End risky               Bad Exception
+    End try                 Finally
+    Finally                 End of main
+    End of main
+
+*/
+
+class BadException : Exception()
+
+fun riskyCode(test: String) {
+    println("Start risky code")
+    if (test == "Yes") {
+        throw BadException()
+    }
+    println("End risky")
+}
+
