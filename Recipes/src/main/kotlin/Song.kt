@@ -1,0 +1,1 @@
+class Song(val title: String, val artist: String)
