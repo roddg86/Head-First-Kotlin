@@ -1,45 +1,30 @@
 fun main(){
+    val petsLiam = listOf("Cat", "Dog", "Fish", "Fish")
+    val petsSophia = listOf("Cat", "Owl")
+    val petsNoah = listOf("Dog", "Dove", "Dog", "Dove")
+    val petsEmily = listOf("Hedgehog")
 
-    /* изменяеый список */
-    var mShoppingList = mutableListOf("Чай","Яйца","Молоко")
-    println("mShoppingList оригинальный: $mShoppingList")
+    /* Напишите код для создания новой коллекции pets , в которой присутствуют все животные
+    из всех списков. */
+    var pets = mutableListOf<String>()
 
-    /* неизменяемый список */
-    val extraShopping = listOf("Печенье", "Сахар", "Яйца")
+    pets.addAll(petsLiam)
+    pets.addAll(petsSophia)
+    pets.addAll(petsNoah)
+    pets.addAll(petsEmily)
+    println("Все животные из всех списков: $pets")
 
-    /* добавим элементы неизменяемого списка в изменяемый */
-    mShoppingList.addAll(extraShopping)
-    println("mShoppingList элементы добавлены: $mShoppingList")
+    /* Как бы вы использовали коллекцию pets для получения общего количества животных? */
+    val numPets = pets.size
+    println("Общее количество: $numPets")
 
-    /* Если изменяемый список содержит Tea */
-    if (mShoppingList.contains("Чай")){
-        /*  set - обновить значение, значение с индексом Чай заменим на значение с индексом Кофе */
-        mShoppingList.set(mShoppingList.indexOf("Чай"), "Кофе")
-        println("mShoppingList значение заменяно: $mShoppingList")
-    }
-    /* Отсортируем список в естественном порядке (по алфавиту) */
-    mShoppingList.sort()
-    println("mShoppingList отсортированный: $mShoppingList")
+    /* Напишите код для вывода количества разных видов животных. */
+    val unicPets = pets.toMutableSet()
+    println("Новая коллекция уникальных видов животных: $unicPets")
+    val numUnicPets = unicPets.size
+    println("Количество уникальных: $numUnicPets")
 
-    /* Перевернутый список */
-    mShoppingList.reverse()
-    println("mShoppingList перевернутый: $mShoppingList")
-
-    /* скопируем список в новый обьект */
-    val mShoppingSet = mShoppingList.toMutableSet()
-
-    /* коллекция set удалила дубликаты */
-    println("mShoppingSet: $mShoppingSet")
-
-    /* создадим неизменяемую неупорядоченную коллекцию без повторяющихся значений*/
-    val moreShopping = setOf("Зеленый лук", "Шпинат", "Молоко")
-
-    /* добавим элементы неизменяемой коллекции в изменяемую */
-    mShoppingSet.addAll(moreShopping)
-
-    println("mShoppingSet элементы добавлены: $mShoppingSet")
-
-    /* скопируем коллекцию Set в список List */
-    mShoppingList = mShoppingSet.toMutableList()
-    println("mShoppingList новая врсия: $mShoppingList")
+    /* Как бы вы перечислили разные виды животных в алфавитном порядке? */
+    val AlfPets = unicPets.sorted()
+    println("Коллекция уникальных животных в алфавитном порядке: $AlfPets")
 }
