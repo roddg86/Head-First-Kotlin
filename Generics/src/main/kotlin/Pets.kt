@@ -24,15 +24,19 @@ class Contest<T: Pet>{
 
 }
 
-/* Определение интерфейса Retailer
-
-Использует обобщенный тип Т
-
-который используется как возвращаемый тип функции sell
-
-*/
 interface Retailer<T>{
     fun sell(): T
+}
+
+/* Класс реалтзует интерфейс Retailer для работы с Cat
+
+теперь функция sell() возвращает Cat
+*/
+class CatRetailer: Retailer<Cat>{
+    override fun sell(): Cat {
+        println("Продать Кота")
+         return Cat("")
+    }
 }
 
 fun main(){
