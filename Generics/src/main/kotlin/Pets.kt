@@ -24,7 +24,13 @@ class Contest<T : Pet> {
 
 }
 
-interface Retailer<T> {
+/* out и ковариантность обобщенного типа */
+/* Если обобщенный тип является ковариантным,
+это означает, что вы можете использовать подтип
+вместо супертипа. */
+/* В нашем примере Retailer<Cat> (подтип)
+должен присваиваться Retailer<Pet> (супертип), поэтому обобщенный тип T снабжается в интерфейсе Retailer префиксом out: */
+interface Retailer<out T> { // ковариантный - это значит что подтип может использоватся вместо супертипа
     fun sell(): T
 }
 
@@ -44,6 +50,13 @@ class DogRetailer : Retailer<Dog> {
     override fun sell(): Dog {
         println("Продать Собаку")
         return Dog("")
+    }
+}
+
+class FishRetailer : Retailer<Fish>{
+    override fun sell(): Fish {
+        println("Продать Рыбу")
+        return Fish("")
     }
 }
 
@@ -67,13 +80,15 @@ fun main() {
     val topPet = petContest.getWinners().first()
     println("Победитель конкурса домашних животных ${topPet.name}")
 
-    /* Создадим обьекты */
+    /* out и ковариантность обобщенного типа */
+    /* Создание обьектов Продавец */
+    /* переменная типа Retailer с совместимым параметром типа */
+    val dogRetailer: Retailer<Dog> = DogRetailer()
+    val catRetailer: Retailer<Cat> = CatRetailer()
+    val petRetailer: Retailer<Pet> = CatRetailer()
+    petRetailer.sell()
 
-    /* компилятор обьявляет тип переменной по присвоенному значению */
-    val catRetailer1 = CatRetailer()
 
-    /* явное оявление типа переменной */
-    val catRetailer2: CatRetailer = CatRetailer()
 
 }
 
