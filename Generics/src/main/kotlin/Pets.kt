@@ -24,6 +24,17 @@ class Contest<T: Pet>{
 
 }
 
+/* Определение интерфейса Retailer
+
+Использует обобщенный тип Т
+
+который используется как возвращаемый тип функции sell
+
+*/
+interface Retailer<T>{
+    fun sell(): T
+}
+
 fun main(){
     /* Создание двух обьектов Cat и обьекта Fish */
     val catFuzz = Cat("Fuzz Lightyear")
