@@ -67,5 +67,13 @@ fun main() {
     val topPet = petContest.getWinners().first()
     println("Победитель конкурса домашних животных ${topPet.name}")
 
+    /* Создадим обьекты */
+
+    /* компилятор обьявляет тип переменной по присвоенному значению */
+    val catRetailer1 = CatRetailer()
+
+    /* явное оявление типа переменной */
+    val catRetailer2: CatRetailer = CatRetailer()
+
 }
 
