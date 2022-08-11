@@ -60,6 +60,14 @@ class FishRetailer : Retailer<Fish>{
     }
 }
 
+/* укажем что обобщенный тип T является разновидностью Pet, для безопастности типов */
+class Vet<T: Pet>{
+    /* функция получает аргумент типа класса */
+    fun treat(t: T){
+        println("Угостить питомца ${t.name}")
+    }
+}
+
 fun main() {
     /* Создание двух обьектов Cat и обьекта Fish */
     val catFuzz = Cat("Fuzz Lightyear")
