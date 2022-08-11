@@ -1,3 +1,4 @@
+/* Обобщения позволяют писать код, безопасный по отношению к типам. */
 abstract class Pet(var name: String)
 
 class Cat(name: String) : Pet(name)
