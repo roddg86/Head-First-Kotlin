@@ -14,15 +14,20 @@ class Contest<T: Pet>{
     }
 
     fun getWinners(): MutableSet<T>{
-        /* получить максимальное значение из score */
         val highScore = scores.values.max()
         val winners: MutableSet<T> = mutableSetOf()
         for ((t, score) in scores){
-            /* Включить участников с максимальной оценкой в MutableSet. */
             if (score == highScore) winners.add(t)
         }
-        /* Вернуть множество MutableSet с данными победителей. */
         return winners
     }
 
 }
+
+/* Создает объект Contest для работы с объектами Cat. */
+val catContest = Contest<Cat>()
+
+/* Это означает, что вы можете добавить объекты Cat в его свойство scores
+и использовать функцию getWinners для возвращения множества
+MutableSet с элементами Cat: */
+
