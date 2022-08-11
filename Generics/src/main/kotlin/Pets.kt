@@ -24,10 +24,11 @@ class Contest<T: Pet>{
 
 }
 
-/* Создает объект Contest для работы с объектами Cat. */
-val catContest = Contest<Cat>()
+fun main(){
+    /* Создание двух обьектов Cat и обьекта Fish */
+    val catFuzz = Cat("Fuzz Lightyear")
+    val catKatsu = Cat("Katsu")
+    val fishFinny = Fish("Finny McGray")
 
-/* Это означает, что вы можете добавить объекты Cat в его свойство scores
-и использовать функцию getWinners для возвращения множества
-MutableSet с элементами Cat: */
+}
 
