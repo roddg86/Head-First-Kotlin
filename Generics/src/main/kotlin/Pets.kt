@@ -6,7 +6,12 @@ class Dog(name: String) : Pet(name)
 
 class Fish(name: String) : Pet(name)
 
-class Contest<T : Pet> {
+/*
+Если обобщенный тип является контрвариантным, это означает, что
+вы можете использовать супертип вместо подтипа.
+Контрвариантность противоположна ковариантности.
+*/
+class Contest<T : Pet>(var vet: Vet<in T>) { // контрвариантный тип
 
     val scores: MutableMap<T, Int> = mutableMapOf()
     fun addScore(t: T, score: Int = 0) {
@@ -23,21 +28,10 @@ class Contest<T : Pet> {
     }
 
 }
-
-/* out и ковариантность обобщенного типа */
-/* Если обобщенный тип является ковариантным,
-это означает, что вы можете использовать подтип
-вместо супертипа. */
-/* В нашем примере Retailer<Cat> (подтип)
-должен присваиваться Retailer<Pet> (супертип), поэтому обобщенный тип T снабжается в интерфейсе Retailer префиксом out: */
-interface Retailer<out T> { // ковариантный - это значит что подтип может использоватся вместо супертипа
+interface Retailer<out T> {
     fun sell(): T
 }
 
-/* Класс реализует интерфейс Retailer для работы с Cat
-
-теперь функция sell() возвращает Cat
-*/
 class CatRetailer : Retailer<Cat> {
     override fun sell(): Cat {
         println("Продать Кота")
@@ -45,7 +39,6 @@ class CatRetailer : Retailer<Cat> {
     }
 }
 
-/* Класс реализует интерфейс Retailer для работы с Dog */
 class DogRetailer : Retailer<Dog> {
     override fun sell(): Dog {
         println("Продать Собаку")
@@ -60,7 +53,6 @@ class FishRetailer : Retailer<Fish>{
     }
 }
 
-/* укажем что обобщенный тип T является разновидностью Pet, для безопастности типов */
 class Vet<T: Pet>{
     /* функция получает аргумент типа класса */
     fun treat(t: T){
@@ -74,23 +66,34 @@ fun main() {
     val catKatsu = Cat("Katsu")
     val fishFinny = Fish("Finny McGray")
 
-    /* Создание обькта Конкурс, предназначенного только для Cat */
-    val catContest = Contest<Cat>()
+    /* Создаем несколько обьектов Vet */
+    val catVet = Vet<Cat>()
+    val fishVat = Vet<Fish>()
+    val petVet = Vet<Pet>()
+
+    /* Обьекты Vet работают со своими разновидностями Pet */
+    catVet.treat(catFuzz)
+    petVet.treat(catKatsu)
+    petVet.treat(fishFinny)
+
+
+    /* Vet<Cat> связывается с Contest<Cat>*/
+    val catContest = Contest<Cat>(catVet)
     catContest.addScore(catFuzz, 50)
     catContest.addScore(catKatsu, 56)
     val topCat = catContest.getWinners().first()
     println("Победительница конкурса кошек ${topCat.name}")
 
-    /* Создание обькта Конкурс, предназначенного только для Pet */
-    val petContest = Contest<Pet>()
+    /* Vet<Pet> связывается с Contest<Pet> */
+    val petContest = Contest<Pet>(petVet)
     petContest.addScore(catFuzz, 50)
     petContest.addScore(fishFinny, 56)
     val topPet = petContest.getWinners().first()
     println("Победитель конкурса домашних животных ${topPet.name}")
 
-    /* out и ковариантность обобщенного типа */
-    /* Создание обьектов Продавец */
-    /* переменная типа Retailer с совместимым параметром типа */
+    /* Vet<Pet> связывается с Contest<Fish> */
+    val fishContest = Contest<Fish>(petVet)
+
     val dogRetailer: Retailer<Dog> = DogRetailer()
     val catRetailer: Retailer<Cat> = CatRetailer()
     val petRetailer: Retailer<Pet> = CatRetailer()
