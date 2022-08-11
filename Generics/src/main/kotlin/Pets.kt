@@ -30,5 +30,11 @@ fun main(){
     val catKatsu = Cat("Katsu")
     val fishFinny = Fish("Finny McGray")
 
+    /* Создание обькта Конкурс, предназначенного только для Cat */
+    val catContest = Contest<Cat>()
+    catContest.addScore(catFuzz,50)
+    catContest.addScore(catKatsu, 56)
+    val topCat = catContest.getWinners().first()
+    println("Победительница конкурса кошек ${topCat.name}")
 }
 
