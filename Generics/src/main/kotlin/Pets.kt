@@ -6,17 +6,17 @@ class Dog(name: String) : Pet(name)
 
 class Fish(name: String) : Pet(name)
 
-class Contest<T: Pet>{
+class Contest<T : Pet> {
 
     val scores: MutableMap<T, Int> = mutableMapOf()
-    fun addScore(t: T, score: Int = 0){
-        if(score >= 0) scores.put(t, score)
+    fun addScore(t: T, score: Int = 0) {
+        if (score >= 0) scores.put(t, score)
     }
 
-    fun getWinners(): MutableSet<T>{
+    fun getWinners(): MutableSet<T> {
         val highScore = scores.values.max()
         val winners: MutableSet<T> = mutableSetOf()
-        for ((t, score) in scores){
+        for ((t, score) in scores) {
             if (score == highScore) winners.add(t)
         }
         return winners
@@ -24,22 +24,30 @@ class Contest<T: Pet>{
 
 }
 
-interface Retailer<T>{
+interface Retailer<T> {
     fun sell(): T
 }
 
-/* Класс реалтзует интерфейс Retailer для работы с Cat
+/* Класс реализует интерфейс Retailer для работы с Cat
 
 теперь функция sell() возвращает Cat
 */
-class CatRetailer: Retailer<Cat>{
+class CatRetailer : Retailer<Cat> {
     override fun sell(): Cat {
         println("Продать Кота")
-         return Cat("")
+        return Cat("")
     }
 }
 
-fun main(){
+/* Класс реализует интерфейс Retailer для работы с Dog */
+class DogRetailer : Retailer<Dog> {
+    override fun sell(): Dog {
+        println("Продать Собаку")
+        return Dog("")
+    }
+}
+
+fun main() {
     /* Создание двух обьектов Cat и обьекта Fish */
     val catFuzz = Cat("Fuzz Lightyear")
     val catKatsu = Cat("Katsu")
@@ -47,14 +55,14 @@ fun main(){
 
     /* Создание обькта Конкурс, предназначенного только для Cat */
     val catContest = Contest<Cat>()
-    catContest.addScore(catFuzz,50)
+    catContest.addScore(catFuzz, 50)
     catContest.addScore(catKatsu, 56)
     val topCat = catContest.getWinners().first()
     println("Победительница конкурса кошек ${topCat.name}")
 
     /* Создание обькта Конкурс, предназначенного только для Pet */
     val petContest = Contest<Pet>()
-    petContest.addScore(catFuzz,50)
+    petContest.addScore(catFuzz, 50)
     petContest.addScore(fishFinny, 56)
     val topPet = petContest.getWinners().first()
     println("Победитель конкурса домашних животных ${topPet.name}")
