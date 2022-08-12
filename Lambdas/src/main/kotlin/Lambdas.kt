@@ -45,4 +45,23 @@ fun main() {
     /* функция getConversionLambda используется для получения лямбда-выражения, преобразующего
      температуру из шкалы Цельсия в шкалу Фаренгейта, после чего передает ее функции convert: */
     convert(20.0, getConversionLambda("CentigradeToFahrenheit"))
+
+    /* определение параметров и возвращаемого типа, лямбда выражения */
+    fun combine(
+        lambda1: (Double) -> Double,
+        lambda2: (Double) -> Double
+    ): (Double) -> Double {
+        /* тело функции возвращает лямбда выражение */
+        return { x: Double -> lambda2(lambda1(x)) }
+    }
+
+    /* создадим две переменные и присвоим им лямбда выражения */
+    val kgsToPounds = { x: Double -> x * 2.204623 }
+    val poundsToUSTons = { x: Double -> x / 2000.0 }
+
+    /* передадим два лямбда выражения в функцию в качестве аргументов */
+    val kgsToUSTons = combine(kgsToPounds, poundsToUSTons)
+
+    val usTons = kgsToUSTons(1000.0)
+    println(usTons)
 }
