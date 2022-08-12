@@ -1,33 +1,32 @@
-fun main(args: Array<String>) {
-
-    /* Формула типа лямбда выражения (parameters) -> return_type */
-    /* тип этого лямбда выражения (Int) -> String */
-    val msg = { x: Int -> "The value is $x" }
-
-    /* явно определим тип возвращаемого значения лямбды */
-    val add: (Int, Int) -> Int
-    add = { x: Int, y: Int -> x + y }
-
-    /* Лямбда не получает параметров и возвращает стринг */
-    val greeting: () -> String
-    greeting = { "Hello!" }
-
-    /* в одной строке кода обьявим тип переменной и присвои ей значение лямбды */
-    val greeting2: () -> String = { "Hello!" }
-
-    /* в этом лямбда выражении можно не указывать тип лямбда выражения */
-    val addFive: (Int) -> Int = { x: Int -> x + 5 }
-
-    /* не указываем тип и он определяется компилятором автоматически */
-    val addFive2: (Int) -> Int = { x -> x + 5 }
-
-    /* можем сократить код используя it(используется в том случае кога компилятор может определить тип параметра) */
-    val addFive3: (Int) -> Int = { it + 5 }
-
-    /* лямбда без возвращаемого значения, используем ключевое слово Unit */
-    val myLambda: () -> Unit = { println("Hi!") }
-
-    /* Unit показыает что мы несобираемся обращатся к результату выражения */
-    val calculation: (Int, Int) -> Unit = { x, y -> x + y }
+fun search(
+    list: List<Grocery>,
+    criteria: (g: Grocery) -> Boolean
+) {
+    for (l in list) {
+        if (criteria(l)) {
+                println(l.name)
+            }
+    }
 }
 
+data class Grocery(
+    val name: String, val category: String,
+    val unit: String, val unitPrice: Double
+)
+
+fun main(args: Array<String>) {
+    /*    Функция main использует функцию search.*/
+    val groceries = listOf(
+        Grocery("Tomatoes", "Vegetable", "lb", 3.0),
+        Grocery("Mushrooms", "Vegetable", "lb", 4.0),
+        Grocery("Bagels", "Bakery", "Pack", 1.5),
+        Grocery("Olive oil", "Pantry", "Bottle", 6.0),
+        Grocery("Ice cream", "Frozen", "Pack", 3.0)
+    )
+    println("Expensive ingredients:")
+    search(groceries) { i: Grocery -> i.unitPrice > 5.0 }
+    println("All vegetables:")
+    search(groceries) { i: Grocery -> i.category == "Vegetable" }
+    println("All packs:")
+    search(groceries) { i: Grocery -> i.unit == "Pack" }
+}
