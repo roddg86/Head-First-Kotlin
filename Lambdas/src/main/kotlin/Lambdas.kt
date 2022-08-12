@@ -1,19 +1,28 @@
 fun main() {
-    val x = 20
-    val y = 2.3
-    val lam1 = { x: Int -> x }
-    println(lam1(x + 6)) // 26
 
-    val lam2: (Double) -> Double
-    lam2 = { (it * 2) + 5 }
-    println(lam2(y)) // 9.6
+    /* функция преобразования температуры по Цельсию в температуру по Фаренгейту */
+    fun convert(x: Double, converter: (Double) -> Double): Double {
+        val result = converter(x)
+        println("$x преобразуется в $result")
+        return result
+    }
 
-    val lam3: (Double, Double) -> Unit
-    lam3 = { x, y -> println(x + y) }
-    lam3.invoke(y, y) // 4.6
+    /* вызов функции аргументом которой будет лямбда выражение */
+    convert(20.0) { c: Double -> c * 1.8 + 32 }
 
-    var lam4 = { y: Int -> (y / 2).toDouble() }
-    println(lam4(x)) // 10.0
-    lam4 = { it + 6.3 }
-    println(lam4(7)) // 13.3
+    /* краткая запись */
+    val fahrenheit = convert(36.6) { it * 1.8 + 32 }
+
+    fun convertFive(converter: (Int) -> Double): Double {
+        val result = converter(5)
+        println("5 преобразуется в $result")
+        return result
+    }
+
+    /* краткая запись, при вызове функции мы не используем круглые скобки потому что единственный параметр это лямбда */
+    convertFive {
+        it * 1.8 + 32
+    }
+    convert(22.0) { it * 1.8 + 32 }
+
 }
