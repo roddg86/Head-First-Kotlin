@@ -1,17 +1,19 @@
 fun main() {
-    var addFive = { x: Int -> x + 5 }
-    println("Передавайте 6 чтобы добавить пять addFive: ${addFive(6)}")
+    val x = 20
+    val y = 2.3
+    val lam1 = { x: Int -> x }
+    println(lam1(x + 6)) // 26
 
-    val addInts = { x: Int, y: Int -> x + y }
-    val result = addInts.invoke(6, 7)
-    println("Передавайте 6 и 7 в надстройки addInts: $result")
+    val lam2: (Double) -> Double
+    lam2 = { (it * 2) + 5 }
+    println(lam2(y)) // 9.6
 
-    val intLambda: (Int, Int) -> Int = { x, y -> x * y }
-    println("Передайте 10, 11 в intLambda: ${intLambda(10, 11)}")
+    val lam3: (Double, Double) -> Unit
+    lam3 = { x, y -> println(x + y) }
+    lam3.invoke(y, y) // 4.6
 
-    val addSeven: (Int) -> Int = { it + 7 }
-    println("Передайте 12, чтобы добавить семь addSeven:${addSeven(12)}")
-
-    val myLambda: () -> Unit = { println("Привет!") }
-    myLambda()
+    var lam4 = { y: Int -> (y / 2).toDouble() }
+    println(lam4(x)) // 10.0
+    lam4 = { it + 6.3 }
+    println(lam4(7)) // 13.3
 }
