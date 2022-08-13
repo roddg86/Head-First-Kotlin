@@ -1,6 +1,6 @@
 abstract class Pet(var name: String)
 
-class Caat(name: String) : Pet(name)
+class Cat(name: String) : Pet(name)
 
 class Dog(name: String) : Pet(name)
 

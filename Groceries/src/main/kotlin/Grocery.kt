@@ -49,4 +49,16 @@ fun main() {
     var itemNames = ""
     groceries.forEach({ itemNames += "${it.name}" })
     println("itemNames: $itemNames")
+
+    /* Группировка элементов коллекции */
+    /* Это означает «сгруппировать элементы groceries по значению category». */
+    val groupByCategory = groceries.groupBy { it.category }
+    println(groupByCategory)
+
+    groceries.groupBy { it.category }.forEach {
+        /* Выводит ключи Map (значения category элементов Grocery). */
+        println(it.key)
+        it.value.forEach { println("    ${it.name}") }
+    }
+
 }
