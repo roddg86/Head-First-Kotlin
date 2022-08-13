@@ -1,37 +1,29 @@
-data class Pizza(val name: String, val pricePerSlice: Double, val quantity: Int)
+abstract class Pet(var name: String)
 
-fun main(args: Array<String>) {
-    val ints = listOf(1, 2, 3, 4, 5)
+class Caat(name: String) : Pet(name)
 
-    val pizzas = listOf(
-        Pizza("Sunny Chicken", 4.5, 4),
-        Pizza("Goat and Nut", 4.0, 1),
-        Pizza("Tropical", 3.0, 2),
-        Pizza("The Garden", 3.5, 3)
-    )
+class Dog(name: String) : Pet(name)
 
-    val minInt = ints.min()
-    println(minInt)
-    val minInt2 = ints.minBy { int: Int -> int }
-    println(minInt2)
-    val sumInts = ints.sum()
-    println(sumInts)
-    val sumInts2 = ints.sumBy { it }
-    println(sumInts2)
-    val sumInts3 = ints.sumByDouble { it.toDouble() }
-    println(sumInts3)
-    val sumInts4 = ints.sumByDouble { int: Int -> int.toDouble() }
-    println(sumInts4)
+class Fish(name: String) : Pet(name)
 
-    /*val lowPrice = pizzas.min()*/
-    val lowPrice2 = pizzas.minBy { it.pricePerSlice }
-    println(lowPrice2)
-    val highQuantity = pizzas.maxBy { p: Pizza -> p.quantity }
-    println(highQuantity)
-    val highQuantity3 = pizzas.maxBy { it.quantity }
-    println(highQuantity3)
-    val totalPrice = pizzas.sumOf { it.pricePerSlice * it.quantity }
-    println(totalPrice)
-    val totalPrice2 = pizzas.sumOf { it.pricePerSlice * it.quantity }
-    println(totalPrice2)
+class Contest<T: Pet>(){
+    var scores: MutableMap<T, Int> = mutableMapOf()
+
+    fun addScore(t: T, score: Int = 0){
+        if(score >= 0) scores.put(t, score)
+    }
+
+    fun getWinners(): Set<T>{
+        /* Оценки хранятся в виде значений Int в MutableMap с именем score, поэтому это выражение получает
+        значение наивысшей оценки */
+        val highScore = scores.values.max()
+
+        /* Содержимое scores фильтруется, чтобы в нем остались только элементы со значением highScore.
+        Затем свойство keys результата используется для получения победителей. */
+        val winners = scores.filter {it.value == highScore}.keys
+
+        /* Функция forEach используется для вывода имен(name) всех победителей. */
+        winners.forEach{ println("Winner: ${it.name}") }
+        return winners
+    }
 }
