@@ -19,23 +19,23 @@ fun main() {
     val ints = listOf(1, 2, 3, 4)
     val maxInt = ints.max() //maxInt = 4
     val minInt = ints.min() //maxInt = 1
-    println(maxInt)
-    println(minInt)
+    println("maxInt: $maxInt")
+    println("minInt: $minInt")
 
     /* Найти в коллекции groceries элемент с наибольшим значением unitPrice */
-    val highestUnitPrice = groceries.maxBy { it.unitPrice }
-    println(highestUnitPrice)
+    val highestUnitPrice = groceries.maxBy { it.unitPrice * 5}
+    println("highestUnitPrice: $highestUnitPrice")
 
     /* Найти в коллекции groceries элемент с наименьшим значением quantity */
     val lowestQuantity = groceries.minBy { it.quantity }
-    println(lowestQuantity)
+    println("lowestQuantity: $lowestQuantity")
 
     /* Найти сумму значений обьекта коллекции, возвращает сумму всех значений quantity в groceries */
     val sumQuantity = groceries.sumOf { it.quantity }
-    println(sumQuantity)
+    println("sumQuantity: $sumQuantity")
 
     /* Возвращает сумму всех значений unitPrice уноженных на quantity */
     val totalPrice = groceries.sumOf { it.quantity * it.unitPrice }
-    println(totalPrice)
+    println("totalPrice: $totalPrice")
 
 }
