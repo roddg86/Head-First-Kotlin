@@ -52,4 +52,22 @@ fun main() {
     у которых значение category отлично от «Frozen» */
     val notFrozen = groceries.filterNot { it.category == "Frozen" }
     println("notFrozen: $notFrozen")
+
+    /* с помощью функции map требуется создать новый список
+    List<Int> с теми же элементами, умноженными на 2 */
+    val doubleInts = ints.map { it * 2 }
+    println("doubleInts: $doubleInts")
+
+    /* Создаем новый список List и заполняем его значениями свойства name каждого элемента Grocery в groceries */
+    val groceryNames = groceries.map { it.name }
+    println(groceryNames)
+
+    /* Возвращает список List со всеми значениями unitPrice, умноженными на 0.5 */
+    val halfUntPrice = groceries.map { it.unitPrice * 0.5 }
+    println("halfUntPrice: $halfUntPrice")
+
+    /* обьединение в цепочку функций высшего порядка */
+    val newPrices = groceries.filter { it.unitPrice > 3.0 }
+        .map { it.unitPrice * 2 }
+    println(newPrices)
 }
