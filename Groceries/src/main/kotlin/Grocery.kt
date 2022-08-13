@@ -70,4 +70,30 @@ fun main() {
     val newPrices = groceries.filter { it.unitPrice > 3.0 }
         .map { it.unitPrice * 2 }
     println(newPrices)
+
+    /* перебрать все элементы списка groceries и вывести
+    значение name каждого элемента */
+    /* for */
+    for (item in groceries) {
+        println(item.name)
+    }
+
+    /* forEach */
+    groceries.forEach { println(it.name) }
+
+    /* обьединим цепочки вызовов с помощью forEach */
+    groceries.filter { it.unitPrice > 3.0 }
+        .forEach { println(it.name) }
+
+    /* Переменную itemNames можно обновлять внутри тела цикла for. */
+    var itemNames = ""
+    for (item in groceries) {
+        itemNames += "${item.name} "
+    }
+    println("itemNames: $itemNames")
+
+    /* Переменную itemNames также можно обновлять в теле лямбда-выражения, передаваемого forEach. */
+    var itemNames2 = ""
+    groceries.forEach{ itemNames2 += "${it.name} " } // лямбда-выражение может обращаться к своему замыканию
+    println("itemNames2: $itemNames2")
 }
