@@ -1,3 +1,5 @@
+/* Функции высшего порядка */
+
 data class Grocery(
     val name: String,
     val category: String,
@@ -23,7 +25,7 @@ fun main() {
     println("minInt: $minInt")
 
     /* Найти в коллекции groceries элемент с наибольшим значением unitPrice */
-    val highestUnitPrice = groceries.maxBy { it.unitPrice * 5}
+    val highestUnitPrice = groceries.maxBy { it.unitPrice * 5 }
     println("highestUnitPrice: $highestUnitPrice")
 
     /* Найти в коллекции groceries элемент с наименьшим значением quantity */
@@ -38,4 +40,16 @@ fun main() {
     val totalPrice = groceries.sumOf { it.quantity * it.unitPrice }
     println("totalPrice: $totalPrice")
 
+    /* Функция фильтр, отбирает коллекцию по критерию переданому в лямбда выражении */
+    val vegetables = groceries.filter { it.category == "Vegetable" }
+    println("vegetables: $vegetables")
+
+    /* возвращает список List с элементами Grocery, у которых значение unitPrice больше 3.0 */
+    val unitPriceOvar3 = groceries.filter { it.unitPrice > 3.0 }
+    println("unitPriceOvar3: $unitPriceOvar3")
+
+    /* функция filterNot возвращает список всех элементов Grocery,
+    у которых значение category отлично от «Frozen» */
+    val notFrozen = groceries.filterNot { it.category == "Frozen" }
+    println("notFrozen: $notFrozen")
 }
