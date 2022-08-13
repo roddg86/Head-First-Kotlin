@@ -61,4 +61,20 @@ fun main() {
         it.value.forEach { println("    ${it.name}") }
     }
 
+    /* суммирование значений коллекции с помощью функци fold */
+    val ints = listOf(1, 2, 3)
+    val sumOfInts = ints.fold(0) { runningSum, item -> runningSum + item }
+    println(sumOfInts)
+
+    /* перемножение элементов */
+    val compositionOfInts = ints.fold(1) { runningSum, item -> runningSum * item }
+    println(compositionOfInts)
+
+    /* Конкатенация имен из элементов списка List<Grocery> */
+    val concatName = groceries.fold("") { string, item -> string + "${item.name}" }
+    println(concatName)
+
+    /* Вычитание суммы из исходного значения */
+    val sum = groceries.fold(50.0) { change, item -> change - item.unitPrice * item.quantity }
+    println(sum)
 }
