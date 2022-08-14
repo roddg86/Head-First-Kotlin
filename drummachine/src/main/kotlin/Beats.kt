@@ -1,9 +1,11 @@
+/* При выполнении этого кода барабан и тарелки, как и прежде, звучат параллельно. Но на этот раз звуковые файлы
+воспроизводятся в разных сопрограммах в одном потоке. */
 import java.io.File
 import javax.sound.sampled.AudioSystem
 import kotlinx.coroutines.*
 
-/* Параметр beats задает ритм воспроизведения, а параметр file - воспроизводимый звуковой файл. */
-fun playBeats(beats: String, file: String) {
+/* suspend означает что сопрограмма может приостанавливатся */
+suspend fun playBeats(beats: String, file: String) {
     val parts = beats.split("x")
     var count = 0
     for (part in parts) {
@@ -13,7 +15,7 @@ fun playBeats(beats: String, file: String) {
             playSound(file)
         } else {
             /* Приостанавливает текущий поток выполнения, чтобы дать время для вопроизведения звукового файла */
-            Thread.sleep(100 * (part.length + 1L))
+            delay(100 * (part.length + 1L))
             if (count < beats.length) {
                 playSound(file)
             }
@@ -31,8 +33,10 @@ fun playSound(file: String) {
     clip.open(audioInputStream)
     clip.start()
 }
-
-fun main() {
+/* Пометьте функцию main префиксом suspend, чтобы она могла вызывать функцию playBeats. */
+/* Барабан и тарелки по-прежнему звучат параллельно, но на этот раз мы используем более эффективный
+способ воспроизведения звуковых файлов. */
+suspend fun main() {
     runBlocking {
         /* Воспроизводятся указанные звуковые файлы */
         launch { playBeats("x-x-x-x-x-x-", "toms.aiff") }
